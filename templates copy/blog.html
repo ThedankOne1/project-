@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Galaxy Kids | Blog{% endblock %}
+
+{% block content %}
+{% if session.get("user") and session.user.role == "teacher" %}
+<div class="text-end mb-4">
+    <a href="/blog/new" class="btn btn-outline-primary">
+        + New Blog Post
+    </a>
+</div>
+{% endif %}
+
+{% for post in posts %}
+<div class="card p-4 mb-4 shadow-sm border-0">
+    <h4 class="fw-bold">{{ post.title }}</h4>
+    <p class="text-muted small">
+        By {{ post.author_email }} · {{ post.created_at.strftime("%d %b %Y") }}
+    </p>
+    <p>{{ post.content }}</p>
+</div>
+{% else %}
+<p class="text-center text-muted">No posts yet.</p>
+{% endfor %}
+
+{% endblock %}

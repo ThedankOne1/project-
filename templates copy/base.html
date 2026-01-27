@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Galaxy Kids{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- BACKGROUND LAYER -->
+<div class="background-layer">
+    <div class="shape blue"></div>
+    <div class="shape yellow"></div>
+    <div class="shape green"></div>
+    <div class="shape purple"></div>
+</div>
+
+<div class="page-wrapper">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark desktop-nav px-4">
+        <a class="navbar-brand fw-bold" href="/">Galaxy Kids</a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+            <ul class="navbar-nav gap-3 align-items-center">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/enroll">Enroll</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">
+                        Contact
+                    </a>
+                </li>
+                <li class="nav-item"><a class="new-link" href="/blog">blog</a></li>
+                {% if session.get("user") %}
+                    <li class="nav-item">
+                        <span class="nav-link fw-semibold">
+                            {{ session.user.role|capitalize }}
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning fw-semibold" href="/logout">
+                            Logout
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="/login">
+                            Login
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <button id="musicToggle" class="music-toggle" aria-label="Toggle music">
+                        <span class="music-icon"></span>
+                    </button>
+
+                    <audio id="bgMusic" loop>
+                        <source src="/static/audio/lofi.mp3" type="audio/mpeg">
+                    </audio>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="{% block main_class %}container my-5{% endblock %}">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container text-center">
+
+            <p class="mb-1 fw-semibold">Galaxy Kids Play School</p>
+            <p class="mb-2">
+                A joyful, safe, and nurturing environment for young learners
+            </p>
+
+            <!-- SOCIAL ICONS -->
+            <div class="footer-social mb-2">
+                <a href="#" aria-label="YouTube" class="social-link youtube">
+                    <i class="bi bi-youtube"></i>
+                </a>
+                <a href="#" aria-label="Instagram" class="social-link instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" aria-label="Facebook" class="social-link facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" aria-label="Twitter" class="social-link twitter">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#" aria-label="WhatsApp" class="social-link whatsapp">
+                    <i class="bi bi-whatsapp"></i>
+                </a>
+            </div>
+
+            <p class="mb-0 small">
+                © 2026 Galaxy Kids · All rights reserved ·
+                <a href="/credits">Credits & Attributions</a>
+            </p>
+
+        </div>
+    </footer>
+
+
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-4">
+
+      <h5 class="text-pink fw-bold mb-4 text-center">
+        Contact Galaxy Kids
+      </h5>
+
+      <div class="contact-modal-body">
+        <img
+          src="{{ url_for('static', filename='images/misc/contact-qr.png') }}"
+          alt="Scan to contact Galaxy Kids"
+          class="contact-qr"
+        >
+
+        <div class="contact-details">
+          <p class="fw-bold mb-2">📞 +91 XXXXX XXXXX</p>
+          <p class="fw-bold mb-0">✉️ info@galaxykids.com</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<div id="chatbot-container">
+    <button id="chatbot-toggle">💬</button>
+
+    <div id="chatbot-window" class="hidden">
+        <div class="chatbot-header">
+            Galaxy Kids Assistant
+            <span id="chatbot-close">✕</span>
+        </div>
+
+        <div id="chatbot-messages"></div>
+
+        <div class="chatbot-input">
+            <input id="chatbot-text" type="text" placeholder="Type a message…" />
+            <button id="chatbot-send">Send</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

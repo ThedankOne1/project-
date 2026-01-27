@@ -1,0 +1,503 @@
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+    --pink: #ff4d88;
+    --blue: #65c7f7;
+    --yellow: #ffd966;
+    --green: #7ed957;
+    --purple: #b388ff;
+
+    --bg-soft: #fdf6ff;
+    --text-dark: #333;
+    --text-light: #fff;
+}
+
+/* =========================
+   RESET / BASE
+========================= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-soft);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* =========================
+   BACKGROUND SHAPES
+========================= */
+.background-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.25;
+}
+
+.shape.blue {
+    width: 260px;
+    height: 260px;
+    background: var(--blue);
+    top: -80px;
+    left: -80px;
+}
+
+.shape.yellow {
+    width: 200px;
+    height: 200px;
+    background: var(--yellow);
+    bottom: -60px;
+    right: -60px;
+}
+
+.shape.green {
+    width: 160px;
+    height: 160px;
+    background: var(--green);
+    top: 35%;
+    right: -80px;
+}
+
+.shape.purple {
+    width: 140px;
+    height: 140px;
+    background: var(--purple);
+    bottom: 20%;
+    left: -70px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.desktop-nav {
+    background: linear-gradient(90deg, var(--pink), var(--blue));
+}
+
+.navbar-brand,
+.nav-link {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: 60px;
+
+    background-image: url("/static/images/hero/hero-wide.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 28px;
+    margin: 40px auto 60px;
+    max-width: 1200px;
+    overflow: hidden;
+
+    -webkit-mask-image: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,1) 65%,
+        rgba(0,0,0,0.6) 90%,
+        rgba(0,0,0,0) 100%
+    );
+    mask-image: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,1) 65%,
+        rgba(0,0,0,0.6) 90%,
+        rgba(0,0,0,0) 100%
+    );
+}
+
+.hero-content {
+    max-width: 620px;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 6px;
+    text-shadow:
+        0 2px 4px rgba(0,0,0,0.4),
+        0 8px 20px rgba(0,0,0,0.35);
+}
+
+.hero-tagline,
+.hero-description {
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   INFO PANELS
+========================= */
+.info-panels {
+    display: flex;
+    height: 420px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.panel {
+    flex: 0.6;
+    display: flex;
+    cursor: pointer;
+    transition: flex 0.45s ease;
+}
+
+.panel.active {
+    flex: 4;
+}
+
+.panel.vision {
+    background: linear-gradient(135deg, var(--blue), #eaf6ff);
+}
+.panel.mission {
+    background: linear-gradient(135deg, var(--green), #ecffe6);
+}
+.panel.why {
+    background: linear-gradient(135deg, var(--yellow), #fff7da);
+}
+.panel.programs {
+    background: linear-gradient(135deg, var(--purple), #f3ecff);
+}
+
+.panel-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding: 24px;
+    font-weight: 700;
+}
+
+.panel-content {
+    padding: 40px;
+    display: none;
+}
+
+.panel.active .panel-content {
+    display: block;
+}
+
+.panel.active .panel-title {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* =========================
+   ENROLL / CONFIRMATION
+========================= */
+.enroll-bg {
+    background: linear-gradient(135deg, #eaf6ff, #fff7da, #fdf6ff);
+    padding: 40px;
+    border-radius: 30px;
+}
+
+.confirmation-container {
+    min-height: calc(100vh - 56px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #eaf6ff, #fdf6ff);
+}
+
+.confirmation-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   CHATBOT
+========================= */
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+#chatbot-toggle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: var(--pink);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+#chatbot-window {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+
+    width: 320px;
+    height: 420px;
+
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#chatbot-window.hidden {
+    display: none;
+}
+
+.chatbot-header {
+    background: linear-gradient(90deg, var(--pink), var(--blue));
+    color: #fff;
+    padding: 12px 14px;
+    font-weight: 700;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbot-close {
+    cursor: pointer;
+}
+
+#chatbot-messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    background: #fafafa;
+}
+
+.chatbot-message {
+    margin-bottom: 10px;
+}
+
+.chatbot-message.user {
+    text-align: right;
+    font-weight: 600;
+}
+
+.chatbot-message.bot {
+    text-align: left;
+    color: #555;
+}
+
+.chatbot-input {
+    display: flex;
+    border-top: 1px solid #eee;
+}
+
+.chatbot-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+}
+
+.chatbot-input button {
+    border: none;
+    padding: 0 14px;
+    background: var(--blue);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+    background: #f8f9fa;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.site-footer a {
+    color: var(--pink);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 40px 24px;
+        margin: 20px;
+    }
+
+    .info-panels {
+        flex-direction: column;
+        height: auto;
+        margin: 0 20px 60px;
+    }
+
+    .panel {
+        flex: 1;
+        cursor: default;
+    }
+
+    .panel-title {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 1.3rem;
+    }
+
+    .panel-content {
+        display: block;
+        padding: 20px;
+    }
+}
+
+/* =========================
+   music toggle button
+========================= */
+.music-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.music-icon {
+    font-size: 1.4rem;
+    position: relative;
+}
+
+.music-icon::before {
+    content: "🎵";
+}
+
+/* Slash when muted */
+.music-toggle.muted .music-icon::after {
+    content: "/";
+    position: absolute;
+    left: 6px;
+    top: -2px;
+    font-size: 1.6rem;
+    color: red;
+    transform: rotate(20deg);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+/* Limit the modal width */
+.modal-dialog {
+    max-width: 420px;
+}
+
+/* Clean card-like modal */
+.modal-content {
+    border-radius: 20px;
+    padding: 24px;
+}
+
+/* Proper internal layout */
+.contact-modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* QR sizing (this was the main offender) */
+.contact-qr {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+/* Text alignment */
+.contact-details {
+    text-align: left;
+}
+
+.contact-details p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+}
+
+/* Mobile: stack neatly */
+@media (max-width: 576px) {
+    .contact-modal-body {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-details {
+        text-align: center;
+    }
+}
+
+/* =========================
+   STICKY FOOTER FIX
+========================= */
+
+/* Ensure full-height layout */
+html, body {
+    height: 100%;
+}
+
+/* Page wrapper becomes a flex column */
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content expands to fill space */
+.page-wrapper > main {
+    flex: 1;
+}
+
+/* Footer stays at the bottom */
+.site-footer {
+    margin-top: auto;
+}

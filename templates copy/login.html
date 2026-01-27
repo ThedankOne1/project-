@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Login | Galaxy Kids{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+
+        <div class="card p-4 shadow-sm border-0">
+            <h2 class="text-center text-pink fw-bold mb-4">Login</h2>
+
+            {% if error %}
+            <div class="alert alert-danger text-center">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Login As</label>
+                    <select name="role" class="form-select" required>
+                        <option value="">Select role</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="parent">Parent</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <button class="btn btn-primary btn-lg w-100">
+                    Login
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
